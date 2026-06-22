@@ -1,0 +1,119 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ─── USUARIOS ───────────────────────────────────────────
+model Usuario {
+  id        String   @id @default(cuid())
+  nombre    String
+  email     String   @unique
+  password  String
+  rol       Rol      @default(ADMIN)
+  activo    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("usuarios")
+}
+
+enum Rol {
+  SUPER_ADMIN
+  ADMIN
+}
+
+// ─── PEDIDOS ────────────────────────────────────────────
+model Pedido {
+  id              String       @id @default(cuid())
+  numeroPedido    Int          @unique @default(autoincrement())
+  tipo            TipoPedido
+  estado          EstadoPedido @default(PENDIENTE)
+  clienteNombre   String
+  clienteTelefono String
+  direccion       String?
+  items           Json
+  subtotal        Float
+  total           Float
+  notas           String?
+  creadoPor       String?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@map("pedidos")
+}
+
+enum TipoPedido {
+  DOMICILIO
+  MESA
+}
+
+enum EstadoPedido {
+  PENDIENTE
+  EN_PREPARACION
+  ENTREGADO
+  CANCELADO
+}
+
+// ─── RESERVAS ───────────────────────────────────────────
+model Reserva {
+  id            String        @id @default(cuid())
+  nombreCliente String
+  telefono      String
+  email         String?
+  fecha         DateTime
+  hora          String
+  personas      Int
+  estado        EstadoReserva @default(PENDIENTE)
+  notas         String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@map("reservas")
+}
+
+enum EstadoReserva {
+  PENDIENTE
+  CONFIRMADA
+  COMPLETADA
+  CANCELADA
+}
+
+// ─── MENÚ ────────────────────────────────────────────────
+model MenuItem {
+  id          String   @id @default(cuid())
+  nombre      String
+  descripcion String?
+  precio      Float
+  categoria   String
+  emoji       String?
+  disponible  Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("menu_items")
+}
+
+// ─── GASTOS ──────────────────────────────────────────────
+model Gasto {
+  id        String         @id @default(cuid())
+  concepto  String
+  monto     Float
+  categoria CategoriaGasto
+  fecha     DateTime       @default(now())
+  notas     String?
+  createdAt DateTime       @default(now())
+
+  @@map("gastos")
+}
+
+enum CategoriaGasto {
+  INGREDIENTES
+  SERVICIOS
+  NOMINA
+  MANTENIMIENTO
+  OTRO
+}
