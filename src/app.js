@@ -15,20 +15,8 @@ app.use(helmet({
   contentSecurityPolicy: false, // El frontend usa scripts inline y CDN externos
 }));
 
-const allowedOrigins = [
-  process.env.FRONTEND_URL,
-  process.env.WEBSITE_URL,
-].filter(Boolean);
-
 app.use(cors({
-  origin: (origin, callback) => {
-    // Permite peticiones sin origin (apps móviles, curl, etc.) y orígenes configurados
-    if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error(`CORS: origen no permitido → ${origin}`));
-    }
-  },
+  origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
