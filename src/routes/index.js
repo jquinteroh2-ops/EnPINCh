@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+router.use('/public',        require('./public.routes'));
 router.use('/auth',          require('./auth.routes'));
 router.use('/pedidos',       require('./pedidos.routes'));
 router.use('/reservas',      require('./reservas.routes'));
