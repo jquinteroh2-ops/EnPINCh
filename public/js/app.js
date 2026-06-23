@@ -8,7 +8,7 @@ const PAGES = {
   dashboard:     { module: PageDashboard,    title: 'Dashboard' },
   pedidos:       { module: PagePedidos,      title: 'Pedidos' },
   reservas:      { module: PageReservas,     title: 'Reservas' },
-  menu:          { module: PageMenu,         title: 'Menú' },
+ /*  menu:          { module: PageMenu,         title: 'Menú' }, */
   contabilidad:  { module: PageContabilidad, title: 'Contabilidad' },
 };
 
