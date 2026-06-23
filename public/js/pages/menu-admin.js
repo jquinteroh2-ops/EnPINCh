@@ -1,4 +1,4 @@
-const PageMenu = (() => {
+/* const PageMenu = (() => {
   const CATS = ['entradas', 'sopas', 'arroz', 'fideos', 'principales', 'postres', 'bebidas', 'otro'];
 
   async function render(container) {
@@ -162,3 +162,4 @@ const PageMenu = (() => {
 
   return { render, destroy, editar, toggleDisp, eliminar };
 })();
+ */
