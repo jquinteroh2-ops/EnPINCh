@@ -1,4 +1,4 @@
-const { prisma } = require('../config/prisma');
+/* const { prisma } = require('../config/prisma');
 
 async function listar(req, res, next) {
   try {
@@ -97,3 +97,4 @@ async function eliminar(req, res, next) {
 }
 
 module.exports = { listar, obtener, crear, actualizar, toggleDisponibilidad, eliminar };
+ */
