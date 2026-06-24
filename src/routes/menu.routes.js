@@ -1,4 +1,4 @@
-const router = require('express').Router();
+/* const router = require('express').Router();
 const { body, param } = require('express-validator');
 const validate = require('../middleware/validate');
 const { authMiddleware } = require('../middleware/auth');
@@ -47,3 +47,4 @@ router.delete('/:id',
 );
 
 module.exports = router;
+ */
